@@ -1,0 +1,10 @@
+__tests__
+.git
+.dockerignore
+.gitignore
+.travis.yml
+coverage
+node_modules
+Dockerfile
+LICENSE.md
+README.md
