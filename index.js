@@ -14,8 +14,7 @@ const template = tt('{YYYY}-{Mo}-{DD} {H}:{mm}:{ss}')
 const overrideHeaders = {
   accept: 'application/json',
   'accept-encoding': undefined,
-  host: undefined,
-  referer: undefined
+  host: undefined
 }
 
 function log(method, statusCode, url) {
@@ -32,7 +31,7 @@ const getUrlFromQuery = (query) => {
 
   // if it is a url with searchParams, they get splitted so combine them again
   const searchParams = Object.entries(query)
-    .filter(keyValue => (keyValue[0] !== 'url' && keyValue[0] !== 'Authorization'))
+    .filter(keyValue => (keyValue[0] !== 'url' && keyValue[0] !== 'Authorization' && keyValue[0] !== 'referer'))
     .map(keyValue => keyValue.join('='))
     .join('&')
 
@@ -65,6 +64,12 @@ const getUrlFromQuery = (query) => {
         filter(keyValue => keyValue[0] == 'Authorization')
       if (authorization.length > 0) {
         headersMerge['Authorization'] = authorization[0][1]
+      }
+
+      const referer = Object.entries(request.query).
+        filter(keyValue => keyValue[0] == 'referer')
+      if (referer.length > 0) {
+        headersMerge['referer'] = referer[0][1]
       }
 
       try {
