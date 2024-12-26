@@ -4,12 +4,10 @@ const rp = require('request-promise-native')
 const tt = require('tinytime')
 const path = require('path')
 
-const server = new Hapi.Server()
-
-server.connection({
+const server = new Hapi.Server({
   port: process.env.PORT || '8080',
   routes: { cors: true }
-});
+})
 
 const template = tt('{YYYY}-{Mo}-{DD} {H}:{mm}:{ss}')
 
