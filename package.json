@@ -45,11 +45,6 @@
   "jest": {
     "collectCoverage": true
   },
-  "standard": {
-    "env": [
-      "jest"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-push": "npm test"
